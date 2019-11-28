@@ -13,7 +13,7 @@ We are going to use the Stanford Sentiment Treebank (SST) dataset to train word
 vectors, and later apply them to a simple sentiment analysis task. You will need to fetch the datasets
 firrst. To do this,
 
-sh get datasets.sh
+sh get_datasets.sh
 
 Then, just 
 
