@@ -16,10 +16,8 @@ def sigmoid(x):
     s -- sigmoid(x)
     """
 
-    ### YOUR CODE HERE
     s = 1/(1+np.exp(-x))
-    ### END YOUR CODE
-
+    
     return s
 
 
@@ -52,12 +50,6 @@ def naiveSoftmaxLossAndGradient(
                     (dJ / dU)
     """
 
-    ### YOUR CODE HERE
-
-    ### Please use the provided softmax function (imported earlier in this file)
-    ### This numerically stable implementation helps you avoid issues pertaining
-    ### to integer overflow. 
-    
     pOut = softmax( np.dot(centerWordVec.reshape(1,len(centerWordVec)) ,outsideVectors.T))
     p = pOut[:,outsideWordIdx]
     loss = np.sum(-np.log(p))
@@ -70,8 +62,6 @@ def naiveSoftmaxLossAndGradient(
     for i,outsideWordIdxI in enumerate(outsideWordIdx):
         gradOutsideVecs[outsideWordIdxI] += -centerWordVec
     gradOutsideVecs += NOut*np.multiply(pOut.T,centerWordVec)
-
-    ### END YOUR CODE
 
     return loss, gradCenterVec, gradOutsideVecs
 
@@ -114,7 +104,6 @@ def negSamplingLossAndGradient(
     negSampleWordIndices = getNegativeSamples(outsideWordIdx, dataset, K)
     indices = [outsideWordIdx] + negSampleWordIndices
 
-    ### YOUR CODE HERE
     NT = len(outsideWordIdx)
     loss = -np.log(sigmoid( np.dot(centerWordVec.reshape(1,3),
                                     outsideVectors[outsideWordIdx].T))) \
@@ -140,7 +129,6 @@ def negSamplingLossAndGradient(
                                             ,centerWordVec.reshape(3,1))))  \
                                             *centerWordVec
     gradOutsideVecs += NT*gradOutsideVecsAssis
-    ### END YOUR CODE
 
     return loss, gradCenterVec, gradOutsideVecs
 
@@ -184,11 +172,9 @@ def skipgram(currentCenterWord, windowSize, outsideWords, word2Ind,
     centerWordVec = centerWordVectors[centerWordIdx]
     outsideWordIdx = [word2Ind[wordI] for wordI in outsideWords]
 
-    ### YOUR CODE HERE
     loss, gradCenterVec, gradOutsideVectors = word2vecLossAndGradient(
                         centerWordVec, outsideWordIdx, outsideVectors, dataset) 
     gradCenterVecs[centerWordIdx] = gradCenterVec
-    ### END YOUR CODE
 
     return loss, gradCenterVecs, gradOutsideVectors
 
