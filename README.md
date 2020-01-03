@@ -1,6 +1,6 @@
-# cs224N-word2vec
+# word2vec
 
-cs224N Assignment 2: Implementation of word2vec algorithem
+Implementation of word2vec algorithem
 
 
 Before you begin, first run the following commands within the assignment directory in order
